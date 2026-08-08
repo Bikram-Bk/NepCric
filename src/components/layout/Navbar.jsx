@@ -353,14 +353,22 @@ const Navbar = () => {
               <div className="relative group">
                 <Link to="/profile">
                   <button
-                    className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors hover:opacity-80"
+                    className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-medium transition-colors hover:opacity-80 overflow-hidden"
                     style={{
                       backgroundColor: "#C4954A",
                       color: "#fff",
                     }}
                     aria-label="Profile"
                   >
-                    {getUserInitials()}
+                    {user?.avatar ? (
+                      <img
+                        src={user.avatar}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      getUserInitials()
+                    )}
                   </button>
                 </Link>
                 <span className="absolute -bottom-8 left-1/2 -translate-x-1/2 text-[10px] font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 px-2 py-0.5 rounded-sm bg-[#1C1A17] text-[#F5F0E8]">
@@ -546,14 +554,22 @@ const Navbar = () => {
               {isAuthenticated ? (
                 <Link to="/profile" onClick={() => setMenuOpen(false)}>
                   <button
-                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors hover:opacity-80"
+                    className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-medium transition-colors hover:opacity-80 overflow-hidden"
                     style={{
                       backgroundColor: "#C4954A",
                       color: "#fff",
                     }}
                     aria-label="Profile"
                   >
-                    {getUserInitials()}
+                    {user?.avatar ? (
+                      <img
+                        src={user.avatar}
+                        alt="Profile"
+                        className="w-full h-full object-cover"
+                      />
+                    ) : (
+                      getUserInitials()
+                    )}
                   </button>
                 </Link>
               ) : (
