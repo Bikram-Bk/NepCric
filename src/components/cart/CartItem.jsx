@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { Minus, Plus, X } from "lucide-react";
-import { formatters } from "@/utils/formatters"; // ✅ Added import
+import { formatters } from "@/utils/formatters"; 
+import { getImageSrc, handleImageError } from "@/utils/images";
 
 const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
   return (
@@ -11,9 +12,10 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
       {/* Image */}
       <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 bg-stone-200 rounded-sm overflow-hidden">
         <img
-          src={item.image}
+          src={getImageSrc(item.image)}
           alt={item.name}
           className="w-full h-full object-contain"
+          onError={handleImageError}
         />
       </div>
 
@@ -37,7 +39,7 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
           >
             {item.category}
           </p>
-          {/* ✅ Updated: Total price in NPR */}
+
           <p
             className="text-sm font-semibold mt-1"
             style={{ fontFamily: "Outfit, sans-serif", color: "#C4954A" }}
@@ -47,7 +49,6 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* Quantity */}
           <div
             className="flex items-center border rounded-sm"
             style={{ borderColor: "#D0C9BA" }}
@@ -73,7 +74,6 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
             </button>
           </div>
 
-          {/* ✅ Updated: Individual item price in NPR */}
           <span
             className="text-sm font-semibold w-20 text-right"
             style={{ fontFamily: "Outfit, sans-serif", color: "#1C1A17" }}
@@ -81,7 +81,6 @@ const CartItem = ({ item, onUpdateQuantity, onRemove }) => {
             {formatters.price(item.price * item.quantity)}
           </span>
 
-          {/* Remove */}
           <button
             onClick={() => onRemove(item.id)}
             className="w-8 h-8 flex items-center justify-center hover:bg-[#EDE8DE] rounded-full transition-colors"

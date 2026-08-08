@@ -1,11 +1,11 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Clock, ShoppingBag } from "lucide-react";
 import { products } from "@/data/products";
+import { useState, useEffect } from "react";
 import { formatters } from "@/utils/formatters";
 import { useCart } from "@/context/CartContext";
+import { Clock, ShoppingBag } from "lucide-react";
+import { getImage, handleImageError } from "@/utils/images";
 
-// Sale products: those with an originalPrice (real discount), top 4
 const saleProducts = products
   .filter((p) => p.originalPrice !== null && p.originalPrice > p.price)
   .slice(0, 4);
@@ -48,7 +48,6 @@ const FlashSale = () => {
       style={{ background: "linear-gradient(to right, #FFF8F0, #F5F0E8)" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        {/* Header */}
         <div className="flex flex-wrap items-center justify-between mb-8">
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
@@ -64,7 +63,6 @@ const FlashSale = () => {
               </h2>
             </div>
 
-            {/* Timer */}
             <div
               className="flex items-center gap-2 text-sm font-medium"
               style={{ color: "#1c1a17" }}
@@ -105,11 +103,10 @@ const FlashSale = () => {
           </Link>
         </div>
 
-        {/* Products Grid */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6">
           {saleProducts.map((product) => {
             const discountPct = Math.round(
-              (1 - product.price / product.originalPrice) * 100
+              (1 - product.price / product.originalPrice) * 100,
             );
             return (
               <Link
@@ -117,22 +114,27 @@ const FlashSale = () => {
                 to={`/product/${product.id}`}
                 className="group bg-white rounded-sm shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 overflow-hidden block"
               >
-                {/* Image area */}
-                <div className="relative bg-stone-100" style={{ aspectRatio: "1/1" }}>
+                <div
+                  className="relative bg-stone-100"
+                  style={{ aspectRatio: "1/1" }}
+                >
                   <div className="absolute top-3 left-3 z-10 px-2 py-1 text-[10px] sm:text-xs font-bold rounded-sm bg-red-500 text-white">
                     {discountPct}% OFF
                   </div>
                   <img
-                    src={product.image}
+                    src={getImage(product.image)}
                     alt={product.name}
                     className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+                    onError={handleImageError}
                   />
                 </div>
-                {/* Info */}
                 <div className="p-3 sm:p-4">
                   <p
                     className="text-[10px] sm:text-xs mb-0.5"
-                    style={{ color: "#7a7468", fontFamily: "Outfit, sans-serif" }}
+                    style={{
+                      color: "#7a7468",
+                      fontFamily: "Outfit, sans-serif",
+                    }}
                   >
                     {product.category}
                   </p>
@@ -148,13 +150,19 @@ const FlashSale = () => {
                   <div className="flex items-center gap-2 mb-3">
                     <span
                       className="text-sm sm:text-base font-bold"
-                      style={{ color: "#c4954a", fontFamily: "Outfit, sans-serif" }}
+                      style={{
+                        color: "#c4954a",
+                        fontFamily: "Outfit, sans-serif",
+                      }}
                     >
                       {formatters.price(product.price)}
                     </span>
                     <span
                       className="text-xs line-through"
-                      style={{ color: "#7a7468", fontFamily: "Outfit, sans-serif" }}
+                      style={{
+                        color: "#7a7468",
+                        fontFamily: "Outfit, sans-serif",
+                      }}
                     >
                       {formatters.price(product.originalPrice)}
                     </span>

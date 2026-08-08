@@ -66,8 +66,9 @@ const ReviewForm = ({ review, onSubmit, onCancel, isLoading }) => {
           rows="4"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
-          className={`w-full px-3 py-2 rounded-sm focus:outline-none focus:ring-1 resize-none ${errors.comment ? "border-red-500" : ""
-            }`}
+          className={`w-full px-3 py-2 rounded-sm focus:outline-none focus:ring-1 resize-none ${
+            errors.comment ? "border-red-500" : ""
+          }`}
           style={{
             backgroundColor: "#F5F0E8",
             border: errors.comment ? "1px solid #ef4444" : "1px solid #D0C9BA",

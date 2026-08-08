@@ -1,5 +1,7 @@
+import { getImage } from "@/utils/images";
+
 export const products = [
-  // ===== KOOKABURRA - All Categories =====
+  //KOOKABURRA - All Categories
   {
     id: 1,
     name: "Kookaburra Kahuna Bat",
@@ -9,7 +11,7 @@ export const products = [
     originalPrice: 39999,
     rating: 4.8,
     reviews: 95,
-    image: "/images/bats/kookaburra-kahuna.jpg",
+    image: getImage("kookaburra-kahuna"),
     tag: "Popular",
     isNew: false,
     inStock: true,
@@ -32,7 +34,7 @@ export const products = [
     originalPrice: null,
     rating: 4.9,
     reviews: 89,
-    image: "/images/balls/kookaburra-turf.jpg",
+    image: getImage("kookaburra-turf"),
     tag: "Bestseller",
     isNew: false,
     inStock: true,
@@ -55,7 +57,7 @@ export const products = [
     originalPrice: null,
     rating: 4.9,
     reviews: 43,
-    image: "/images/protective/keeper-gloves.jpg",
+    image: getImage("keeper-gloves"),
     tag: "Popular",
     isNew: false,
     inStock: true,
@@ -78,7 +80,7 @@ export const products = [
     originalPrice: null,
     rating: 4.6,
     reviews: 29,
-    image: "/images/footwear/kookaburra-spikes.jpg",
+    image: getImage("kookaburra-spikes"),
     tag: "Popular",
     isNew: true,
     inStock: true,
@@ -101,7 +103,7 @@ export const products = [
     originalPrice: 24999,
     rating: 4.7,
     reviews: 45,
-    image: "/images/accessories/kookaburra-bag.jpg",
+    image: getImage("kookaburra-bag"),
     tag: "Best Seller",
     isNew: false,
     inStock: true,
@@ -116,7 +118,7 @@ export const products = [
     },
   },
 
-  // ===== GRAY-NICOLLS - All Categories =====
+  // GRAY-NICOLLS - All Categories
   {
     id: 6,
     name: "Gray-Nicolls Pro Bat",
@@ -126,7 +128,7 @@ export const products = [
     originalPrice: 46999,
     rating: 4.9,
     reviews: 128,
-    image: "/images/bats/gn-pro-bat.jpg",
+    image: getImage("gn-pro-bat"),
     tag: "Best Seller",
     isNew: false,
     inStock: true,
@@ -149,7 +151,7 @@ export const products = [
     originalPrice: null,
     rating: 4.5,
     reviews: 38,
-    image: "/images/balls/gn-training.jpg",
+    image: getImage("gn-training"),
     tag: "Popular",
     isNew: false,
     inStock: true,
@@ -172,7 +174,7 @@ export const products = [
     originalPrice: 24999,
     rating: 4.8,
     reviews: 38,
-    image: "/images/protective/gn-helmet.jpg",
+    image: getImage("gn-helmet"),
     tag: "Sale",
     isNew: false,
     inStock: true,
@@ -195,7 +197,7 @@ export const products = [
     originalPrice: 21999,
     rating: 4.5,
     reviews: 22,
-    image: "/images/footwear/gn-prestige-shoes.jpg",
+    image: getImage("gn-prestige-shoes"),
     tag: "Premium",
     isNew: true,
     inStock: true,
@@ -218,7 +220,7 @@ export const products = [
     originalPrice: null,
     rating: 4.3,
     reviews: 34,
-    image: "/images/accessories/gn-bat-grip.jpg",
+    image: getImage("gn-bat-grip"),
     tag: "",
     isNew: false,
     inStock: true,
@@ -233,9 +235,8 @@ export const products = [
     },
   },
 
-  // ============================================================
-  // ===== SS (Sareen Sports) - All Categories =====
-  // ============================================================
+  // SS (Sareen Sports) - All Categories
+
   {
     id: 11,
     name: "SS Ton Bat",
@@ -245,7 +246,7 @@ export const products = [
     originalPrice: 31999,
     rating: 4.7,
     reviews: 76,
-    image: "/images/bats/ss-ton.jpg",
+    image: getImage("ss-ton"),
     tag: "Sale",
     isNew: false,
     inStock: true,
@@ -268,7 +269,7 @@ export const products = [
     originalPrice: null,
     rating: 4.3,
     reviews: 28,
-    image: "/images/balls/ss-practice-ball.jpg",
+    image: getImage("ss-practice-ball"),
     tag: "",
     isNew: false,
     inStock: true,
@@ -290,7 +291,7 @@ export const products = [
     originalPrice: null,
     rating: 4.5,
     reviews: 28,
-    image: "/images/protective/ss-arm-guard.jpg",
+    image: getImage("ss-arm-guard"),
     tag: "Popular",
     isNew: true,
     inStock: true,
@@ -312,7 +313,7 @@ export const products = [
     originalPrice: 12999,
     rating: 4.3,
     reviews: 18,
-    image: "/images/footwear/ss-cricket-shoes.jpg",
+    image: getImage("ss-cricket-shoes"),
     tag: "Sale",
     isNew: false,
     inStock: true,
@@ -334,7 +335,7 @@ export const products = [
     originalPrice: null,
     rating: 4.2,
     reviews: 15,
-    image: "/images/accessories/ss-sunglasses.jpg",
+    image: getImage("ss-sunglasses"),
     tag: "",
     isNew: true,
     inStock: true,
@@ -348,9 +349,7 @@ export const products = [
     },
   },
 
-  // ============================================================
-  // ===== SG (Sanspareils Greenlands) - All Categories =====
-  // ============================================================
+  // SG (Sanspareils Greenlands) - All Categories
   {
     id: 16,
     name: "SG Test Bat",
@@ -360,7 +359,7 @@ export const products = [
     originalPrice: null,
     rating: 4.8,
     reviews: 54,
-    image: "/images/bats/sg-test.png",
+    image: getImage("sg-test"),
     tag: "Premium",
     isNew: true,
     inStock: true,
@@ -383,7 +382,7 @@ export const products = [
     originalPrice: 7999,
     rating: 4.7,
     reviews: 67,
-    image: "/images/balls/sg-test.jpg",
+    image: getImage("sg-test-ball"),
     tag: "Popular",
     isNew: false,
     inStock: true,
@@ -406,7 +405,7 @@ export const products = [
     originalPrice: 8999,
     rating: 4.6,
     reviews: 24,
-    image: "/images/protective/sg-leg-guards.jpg",
+    image: getImage("sg-leg-guards"),
     tag: "Sale",
     isNew: false,
     inStock: true,
@@ -429,7 +428,7 @@ export const products = [
     originalPrice: null,
     rating: 4.4,
     reviews: 16,
-    image: "/images/footwear/sg-spikes.jpg",
+    image: getImage("sg-spikes"),
     tag: "",
     isNew: true,
     inStock: true,
@@ -451,7 +450,7 @@ export const products = [
     originalPrice: null,
     rating: 4.1,
     reviews: 20,
-    image: "/images/accessories/sg-scorebook.jpg",
+    image: getImage("sg-scorebook"),
     tag: "",
     isNew: false,
     inStock: true,
@@ -466,9 +465,7 @@ export const products = [
     },
   },
 
-  // ============================================================
-  // ===== NEW BALANCE - All Categories =====
-  // ============================================================
+  // NEW BALANCE - All Categories
   {
     id: 21,
     name: "New Balance 1080 Bat",
@@ -478,7 +475,7 @@ export const products = [
     originalPrice: null,
     rating: 4.6,
     reviews: 43,
-    image: "/images/bats/nb-1080.jpg",
+    image: getImage("nb-1080"),
     tag: "Best Seller",
     isNew: true,
     inStock: true,
@@ -501,7 +498,7 @@ export const products = [
     originalPrice: null,
     rating: 4.4,
     reviews: 22,
-    image: "/images/balls/nb-training-ball.jpg",
+    image: getImage("nb-training-ball"),
     tag: "",
     isNew: true,
     inStock: true,
@@ -524,7 +521,7 @@ export const products = [
     originalPrice: 15999,
     rating: 4.7,
     reviews: 18,
-    image: "/images/protective/nb-pads.jpg",
+    image: getImage("nb-pads"),
     tag: "Premium",
     isNew: true,
     inStock: true,
@@ -547,7 +544,7 @@ export const products = [
     originalPrice: 23999,
     rating: 4.6,
     reviews: 62,
-    image: "/images/footwear/nb-ck10.jpg",
+    image: getImage("nb-ck10"),
     tag: "Best Seller",
     isNew: false,
     inStock: true,
@@ -570,7 +567,7 @@ export const products = [
     originalPrice: 19999,
     rating: 4.5,
     reviews: 15,
-    image: "/images/accessories/nb-bag.jpg",
+    image: getImage("nb-bag"),
     tag: "",
     isNew: true,
     inStock: true,

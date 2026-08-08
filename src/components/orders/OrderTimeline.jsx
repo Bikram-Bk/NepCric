@@ -36,7 +36,6 @@ const OrderTimeline = ({ order }) => {
             key={status.key}
             className="flex items-start gap-4 pb-6 last:pb-0 relative"
           >
-            {/* Line connector */}
             {index < statuses.length - 1 && (
               <div
                 className="absolute left-4 top-8 w-0.5 h-12"
@@ -45,23 +44,22 @@ const OrderTimeline = ({ order }) => {
                 }}
               />
             )}
-
-            {/* Icon */}
             <div
-              className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${isCompleted
+              className={`w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0 ${
+                isCompleted
                   ? "bg-[#C4954A] text-white"
                   : "bg-[#EDE8DE] text-[#7A7468]"
-                }`}
+              }`}
             >
               {isCompleted ? <Check size={16} /> : <Clock size={16} />}
             </div>
 
-            {/* Content */}
             <div className="flex-1 pt-1">
               <div className="flex items-center gap-3">
                 <span
-                  className={`text-sm font-medium ${isCompleted ? "text-[#1C1A17]" : "text-[#7A7468]"
-                    }`}
+                  className={`text-sm font-medium ${
+                    isCompleted ? "text-[#1C1A17]" : "text-[#7A7468]"
+                  }`}
                   style={{ fontFamily: "Outfit, sans-serif" }}
                 >
                   {status.label}

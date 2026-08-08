@@ -1,5 +1,3 @@
-// Form validation utilities
-
 export const validators = {
   // Email validation
   email: (value) => {
@@ -36,7 +34,7 @@ export const validators = {
     return null;
   },
 
-  // Phone number validation (optional)
+  // Phone number validation
   phone: (value) => {
     if (!value) return null;
     const phoneRegex = /^[0-9]{10}$/;

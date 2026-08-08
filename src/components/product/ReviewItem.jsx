@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useAuth } from "@/context/AuthContext";
 import RatingStars from "./RatingStars";
-import { ThumbsUp, Edit, Trash2, CheckCircle } from "lucide-react";
 import { formatters } from "@/utils/formatters";
+import { useAuth } from "@/context/AuthContext";
+import { ThumbsUp, Edit, Trash2, CheckCircle } from "lucide-react";
 
 const ReviewItem = ({ review, onEdit, onDelete, onHelpful }) => {
   const { user } = useAuth();

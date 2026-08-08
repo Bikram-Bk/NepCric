@@ -33,8 +33,6 @@ export const profileService = {
       throw new Error("User not authenticated.");
     }
 
-    // In real app, verify old password with server
-    // For mock, we'll just update
     const updatedUser = {
       ...currentUser,
       password: newPassword,
@@ -102,7 +100,6 @@ export const profileService = {
       throw new Error("User not authenticated.");
     }
 
-    // For mock, we'll store base64 or URL
     const updatedUser = {
       ...currentUser,
       avatar: avatarData,

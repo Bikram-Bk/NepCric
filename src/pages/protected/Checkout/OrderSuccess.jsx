@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Link, useSearchParams } from "react-router-dom";
 import { CheckCircle } from "lucide-react";
-import { orderService } from "@/services/orderService";
 import { formatters } from "@/utils/formatters";
+import { orderService } from "@/services/orderService";
+import { Link, useSearchParams } from "react-router-dom";
 
 const OrderSuccess = () => {
   const [searchParams] = useSearchParams();
@@ -117,7 +117,6 @@ const OrderSuccess = () => {
               >
                 Total
               </p>
-              {/* ✅ Updated: Order total in NPR */}
               <p
                 className="text-sm font-semibold"
                 style={{ fontFamily: "Outfit, sans-serif", color: "#C4954A" }}

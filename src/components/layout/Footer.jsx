@@ -22,7 +22,7 @@ const Footer = () => {
                   color: "#F5F0E8",
                 }}
               >
-              NepCric
+                NepCric
               </span>
               <span
                 className="w-1.5 h-1.5 rounded-full mt-0.5"

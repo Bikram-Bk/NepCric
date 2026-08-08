@@ -70,23 +70,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <Link
-          to="/"
-          className="hover:opacity-60 transition-opacity"
-          style={{ color: "#C4954A" }}
-        >
-          Home
-        </Link>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>FAQ</span>
-      </div>
-
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div className="text-center mb-10">
         <h1

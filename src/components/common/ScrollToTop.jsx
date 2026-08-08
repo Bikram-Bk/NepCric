@@ -1,10 +1,9 @@
-import { useState, useEffect } from "react";
 import { ArrowUp } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
 
-  // Show button when page is scrolled down
   useEffect(() => {
     const toggleVisibility = () => {
       if (window.scrollY > 300) {

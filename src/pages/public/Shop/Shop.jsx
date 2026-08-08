@@ -1,10 +1,10 @@
-import { useState, useEffect } from "react";
-import { useSearchParams } from "react-router-dom";
-import { products } from "@/data/products";
-import { categories } from "@/data/categories";
 import { brands } from "@/data/brands";
-import ProductCard from "@/components/product/ProductCard";
+import { products } from "@/data/products";
+import { useState, useEffect } from "react";
+import { categories } from "@/data/categories";
 import { Search, Filter, X } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
+import ProductCard from "@/components/product/ProductCard";
 
 const Shop = () => {
   const [searchParams] = useSearchParams();
@@ -23,12 +23,11 @@ const Shop = () => {
     setSelectedCategory(cat);
   }, [searchParams]);
 
-  // ✅ Calculate min and max prices from products
-  const minPrice = 0; // ✅ Set min to 0
+  const minPrice = 0;
   const maxPrice = Math.max(...products.map((p) => p.price));
 
   const [priceRange, setPriceRange] = useState({
-    min: minPrice, // ✅ 0
+    min: minPrice,
     max: maxPrice,
   });
 
@@ -66,7 +65,7 @@ const Shop = () => {
     }, 500);
   }, []);
 
-  // ✅ Reset price range when products change (only max, min stays 0)
+  // Reset price range when products change (only max, min stays 0)
   useEffect(() => {
     const newMax = Math.max(...products.map((p) => p.price));
     setPriceRange((prev) => ({ ...prev, max: newMax }));
@@ -141,7 +140,7 @@ const Shop = () => {
     console.log("Added to cart:", product);
   };
 
-  // ✅ FIXED: Handle price input change - prevents leading zeros
+  //  Handle price input change - prevents leading zeros
   const handlePriceChange = (type, value) => {
     // Remove leading zeros and convert to number
     let numValue = value.replace(/^0+/, "");
@@ -157,15 +156,7 @@ const Shop = () => {
 
   if (isLoading) {
     return (
-      <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div
-          className="flex items-center gap-2 text-sm mb-6"
-          style={{ fontFamily: "Outfit, sans-serif" }}
-        >
-          <span className="text-[#C4954A]">Home</span>
-          <span style={{ color: "#7A7468" }}>/</span>
-          <span style={{ color: "#1C1A17" }}>Shop</span>
-        </div>
+      <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <div className="min-h-[60vh] flex items-center justify-center">
           <div className="w-12 h-12 border-4 border-t-[#C4954A] border-gray-200 rounded-full animate-spin"></div>
         </div>
@@ -174,18 +165,7 @@ const Shop = () => {
   }
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <span className="text-[#C4954A]">Home</span>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>Shop</span>
-      </div>
-
-      {/* Header */}
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-8">
         <div>
           <h1
@@ -203,7 +183,6 @@ const Shop = () => {
         </div>
 
         <div className="flex flex-col sm:flex-row items-center gap-3 w-full sm:w-auto">
-          {/* Search */}
           <div className="relative w-full sm:w-64">
             <Search
               className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
@@ -263,7 +242,6 @@ const Shop = () => {
         {/* Filters - Desktop */}
         <aside className="hidden sm:block w-64 flex-shrink-0">
           <div className="space-y-6">
-            {/* Categories */}
             <div>
               <h3
                 className="text-sm font-semibold mb-3"
@@ -324,7 +302,7 @@ const Shop = () => {
               </div>
             </div>
 
-            {/* ✅ Fixed: Price Range - Now from 0 to max */}
+            {/* Price Range - Now from 0 to max */}
             <div>
               <h3
                 className="text-sm font-semibold mb-3"

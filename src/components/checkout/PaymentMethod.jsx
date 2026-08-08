@@ -28,7 +28,6 @@ const PaymentMethod = ({ onSubmit }) => {
 
   return (
     <div className="space-y-6">
-      {/* Payment Method Selection */}
       <div className="grid grid-cols-3 gap-3">
         {paymentMethods.map((method) => {
           const Icon = method.icon;
@@ -58,7 +57,6 @@ const PaymentMethod = ({ onSubmit }) => {
         })}
       </div>
 
-      {/* Card Details Form */}
       {selectedMethod === "card" && (
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
@@ -170,7 +168,6 @@ const PaymentMethod = ({ onSubmit }) => {
         </form>
       )}
 
-      {/* UPI / Mobile Pay */}
       {selectedMethod === "upi" && (
         <div className="text-center py-8">
           <Smartphone size={48} className="mx-auto text-[#C4954A]" />
@@ -195,7 +192,6 @@ const PaymentMethod = ({ onSubmit }) => {
         </div>
       )}
 
-      {/* Net Banking */}
       {selectedMethod === "netbanking" && (
         <div className="text-center py-8">
           <Building size={48} className="mx-auto text-[#C4954A]" />

@@ -69,7 +69,6 @@ const Testimonials = () => {
       className="py-10 sm:py-14 lg:py-20 max-w-7xl mx-auto px-6 lg:px-10"
     >
       <div className="grid lg:grid-cols-2 gap-14 items-center">
-        {/* Left Column */}
         <div>
           <p
             className="text-xs font-medium tracking-widest uppercase mb-3"
@@ -94,13 +93,11 @@ const Testimonials = () => {
             className="text-base leading-relaxed mb-10 max-w-sm"
             style={{ color: "#7A7468", fontFamily: "Outfit, sans-serif" }}
           >
-            Real players, real stories — hear from Nepal's finest cricketers
-            who trust NepCric for their game.
+            Real players, real stories — hear from Nepal's finest cricketers who
+            trust NepCric for their game.
           </p>
 
-          {/* Navigation Controls */}
           <div className="flex items-center gap-4">
-            {/* Dots */}
             <div className="flex gap-2">
               {TESTIMONIALS.map((_, i) => (
                 <button
@@ -118,7 +115,6 @@ const Testimonials = () => {
               ))}
             </div>
 
-            {/* Next/Prev Buttons */}
             <div className="flex gap-2 ml-4">
               <button
                 onClick={prevTestimonial}
@@ -146,7 +142,6 @@ const Testimonials = () => {
           </div>
         </div>
 
-        {/* Right Column - Testimonial Display */}
         <div className="relative min-h-[300px]">
           {TESTIMONIALS.map((t, i) => (
             <div

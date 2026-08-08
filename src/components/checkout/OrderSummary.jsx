@@ -1,4 +1,5 @@
 import { formatters } from "@/utils/formatters";
+import { getImage, handleImageError } from "@/utils/images";
 
 const OrderSummary = ({ cart, subtotal, shipping, tax, total, onBack }) => {
   return (
@@ -19,9 +20,10 @@ const OrderSummary = ({ cart, subtotal, shipping, tax, total, onBack }) => {
           >
             <div className="w-12 h-12 flex-shrink-0 bg-stone-200 rounded-sm overflow-hidden">
               <img
-                src={item.image}
+                src={getImage(item.image)}
                 alt={item.name}
                 className="w-full h-full object-contain"
+                onError={handleImageError}
               />
             </div>
             <div className="flex-1">
@@ -51,7 +53,6 @@ const OrderSummary = ({ cart, subtotal, shipping, tax, total, onBack }) => {
         ))}
       </div>
 
-      {/* Totals */}
       <div className="space-y-2 text-sm">
         <div className="flex justify-between">
           <span style={{ color: "#7A7468", fontFamily: "Outfit, sans-serif" }}>

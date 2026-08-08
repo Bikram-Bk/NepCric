@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { categories } from "@/data/categories";
+import { getImage, handleImageError } from "@/utils/images";
 
 // Map category id → image path using working product images
 const categoryImages = {
@@ -29,9 +30,10 @@ const CategoryCard = ({ category }) => {
       style={{ aspectRatio: "4/5" }}
     >
       <img
-        src={categoryImages[category.name]}
+        src={getImage(categoryImages[category.name])}
         alt={categoryAlts[category.name]}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        onError={handleImageError}
       />
       <div
         className="absolute inset-0"

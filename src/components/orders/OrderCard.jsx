@@ -1,10 +1,38 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
-import OrderStatusBadge from "./OrderStatusBadge";
 import { formatters } from "@/utils/formatters";
+import OrderStatusBadge from "./OrderStatusBadge";
+import CancelOrderModal from "./CancelOrderModal";
+import { orderService } from "@/services/orderService";
+import { getItemImage, handleImageError } from "@/utils/images";
 
-const OrderCard = ({ order }) => {
+const OrderCard = ({ order, onOrderUpdate }) => {
+  const [isCancelling, setIsCancelling] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const itemCount =
     order.items?.reduce((sum, item) => sum + item.quantity, 0) || 0;
+
+  const handleCancelClick = () => {
+    setShowConfirm(true);
+  };
+
+  const handleConfirmCancel = async () => {
+    setIsCancelling(true);
+    try {
+      orderService.cancelOrder(order.id);
+      if (onOrderUpdate) onOrderUpdate();
+    } catch (error) {
+      console.error("Failed to cancel order:", error);
+    } finally {
+      setIsCancelling(false);
+      setShowConfirm(false);
+    }
+  };
+
+  const handleDismissCancel = () => {
+    setShowConfirm(false);
+  };
 
   return (
     <div className="bg-white p-6 rounded-sm border border-[#D0C9BA] hover:shadow-md transition-shadow">
@@ -29,7 +57,6 @@ const OrderCard = ({ order }) => {
           </p>
         </div>
         <div className="text-right">
-          {/* ✅ Updated: Order total in NPR */}
           <p
             className="text-lg font-bold"
             style={{ fontFamily: "Outfit, sans-serif", color: "#C4954A" }}
@@ -53,9 +80,10 @@ const OrderCard = ({ order }) => {
             className="w-10 h-10 flex-shrink-0 bg-stone-200 rounded-sm overflow-hidden"
           >
             <img
-              src={item.image}
+              src={getItemImage(item)}
               alt={item.name}
               className="w-full h-full object-contain"
+              onError={handleImageError}
             />
           </div>
         ))}
@@ -69,7 +97,14 @@ const OrderCard = ({ order }) => {
         )}
       </div>
 
-      {/* Action Buttons */}
+      <CancelOrderModal
+        isOpen={showConfirm}
+        onClose={handleDismissCancel}
+        onConfirm={handleConfirmCancel}
+        isCancelling={isCancelling}
+        order={order}
+      />
+
       <div className="flex flex-wrap gap-3 mt-4 pt-4 border-t border-[#D0C9BA]">
         <Link
           to={`/orders/${order.id}`}
@@ -85,9 +120,7 @@ const OrderCard = ({ order }) => {
         </Link>
         {order.status === "pending" && (
           <button
-            onClick={() => {
-              /* TODO: Implement cancel order */
-            }}
+            onClick={handleCancelClick}
             className="px-4 py-2 text-xs font-medium rounded-sm transition-all duration-200 hover:opacity-90"
             style={{
               backgroundColor: "#ef4444",
@@ -101,9 +134,7 @@ const OrderCard = ({ order }) => {
         )}
         {order.status === "delivered" && (
           <button
-            onClick={() => {
-              /* TODO: Implement reorder */
-            }}
+            onClick={() => {}}
             className="px-4 py-2 text-xs font-medium rounded-sm transition-all duration-200 hover:opacity-90"
             style={{
               backgroundColor: "#22c55e",

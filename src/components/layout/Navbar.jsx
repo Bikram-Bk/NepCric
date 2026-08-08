@@ -1,4 +1,7 @@
 import { useState, useEffect, useRef } from "react";
+import { useAuth } from "@/context/AuthContext";
+import { useCart } from "@/context/CartContext";
+import { useWishlist } from "@/context/WishlistContext";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import {
   Heart,
@@ -9,11 +12,7 @@ import {
   Package,
   X,
 } from "lucide-react";
-import { useAuth } from "@/context/AuthContext";
-import { useCart } from "@/context/CartContext";
-import { useWishlist } from "@/context/WishlistContext";
 
-// ✅ Navigation links in your requested order
 const NAV_LINKS = [
   { name: "Featured", id: "featured" },
   { name: "Categories", id: "categories" },
@@ -37,14 +36,12 @@ const Navbar = () => {
   const { itemCount } = useCart();
   const { itemCount: wishlistCount } = useWishlist();
 
-  // Focus search input when opened
   useEffect(() => {
     if (searchOpen && searchInputRef.current) {
       searchInputRef.current.focus();
     }
   }, [searchOpen]);
 
-  // Click outside to close search dropdown
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (
@@ -116,14 +113,12 @@ const Navbar = () => {
     }
   };
 
-  // Handle logout
   const handleLogout = () => {
     logout();
     navigate("/");
     setMenuOpen(false);
   };
 
-  // Get user initials for avatar
   const getUserInitials = () => {
     if (!user || !user.name) return "U";
     return user.name.charAt(0).toUpperCase();
@@ -156,7 +151,6 @@ const Navbar = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-10 h-16 flex items-center justify-between">
-        {/* ✅ Logo - Updated for Nepal */}
         <Link to="/" className="flex items-center gap-2 shrink-0">
           <span
             className="text-2xl tracking-tight transition-colors duration-500"
@@ -198,7 +192,6 @@ const Navbar = () => {
 
         {/* Actions - Search, Wishlist, Cart, Orders, Profile/Login */}
         <div className="hidden md:flex items-center gap-5">
-          {/* 1. Search Icon & Floating Dropdown */}
           <div className="relative" ref={searchContainerRef}>
             <div className="relative group">
               <button
@@ -219,7 +212,6 @@ const Navbar = () => {
               </span>
             </div>
 
-            {/* Floating Dropdown Search Modal */}
             {searchOpen && (
               <div className="absolute top-full right-0 mt-3 w-72 sm:w-80 bg-white rounded-md shadow-2xl border border-stone-200 p-3.5 z-50">
                 <form
@@ -265,13 +257,16 @@ const Navbar = () => {
                   className="text-[10px] mt-2 text-stone-400 px-1"
                   style={{ fontFamily: "Outfit, sans-serif" }}
                 >
-                  Press <kbd className="px-1 py-0.5 bg-stone-100 rounded border">Enter</kbd> to view search results
+                  Press{" "}
+                  <kbd className="px-1 py-0.5 bg-stone-100 rounded border">
+                    Enter
+                  </kbd>{" "}
+                  to view search results
                 </p>
               </div>
             )}
           </div>
 
-          {/* 2. Wishlist - With Tooltip */}
           <div className="relative group">
             <Link to="/wishlist">
               <button
@@ -297,7 +292,6 @@ const Navbar = () => {
             </span>
           </div>
 
-          {/* 3. Cart - With Tooltip */}
           <div className="relative group">
             <Link to="/cart">
               <button
@@ -323,7 +317,6 @@ const Navbar = () => {
             </span>
           </div>
 
-          {/* 4. Orders Icon - With Tooltip */}
           {isAuthenticated && (
             <div className="relative group">
               <Link to="/orders">
@@ -346,10 +339,9 @@ const Navbar = () => {
             </div>
           )}
 
-          {/* 5. Profile/Login - With Tooltip */}
+          {/* Profile/Login - With Tooltip */}
           {isAuthenticated ? (
             <div className="flex items-center gap-3">
-              {/* Profile */}
               <div className="relative group">
                 <Link to="/profile">
                   <button
@@ -508,7 +500,6 @@ const Navbar = () => {
 
             {/* Mobile Action Icons Row */}
             <div className="flex items-center justify-around gap-2 py-2">
-
               <Link to="/wishlist" onClick={() => setMenuOpen(false)}>
                 <button
                   className="w-10 h-10 flex items-center justify-center rounded-full transition-colors hover:bg-black/5 relative"

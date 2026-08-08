@@ -1,6 +1,6 @@
-import { RouterProvider } from "react-router-dom";
 import { router } from "@/routes";
 import { Toaster } from "react-hot-toast";
+import { RouterProvider } from "react-router-dom";
 import { AuthProvider } from "@/context/AuthProvider";
 import { CartProvider } from "@/context/CartProvider";
 import { WishlistProvider } from "@/context/WishlistProvider";

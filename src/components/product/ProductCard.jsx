@@ -1,9 +1,10 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Heart, Star } from "lucide-react";
+import { useState, useEffect } from "react";
 import { useCart } from "@/context/CartContext";
-import { useWishlist } from "@/context/WishlistContext";
 import { formatters } from "@/utils/formatters";
+import { useWishlist } from "@/context/WishlistContext";
+import { getImageSrc, handleImageError } from "@/utils/images";
 
 const ProductCard = ({ product }) => {
   const { addToCart } = useCart();
@@ -44,7 +45,7 @@ const ProductCard = ({ product }) => {
     );
   };
 
-  // ✅ Helper function to get tag color
+  // Helper function to get tag color
   const getTagColor = (tag) => {
     const colors = {
       "Best Seller": "bg-green-500",
@@ -65,15 +66,19 @@ const ProductCard = ({ product }) => {
         style={{ aspectRatio: "1/1", maxHeight: "240px" }}
       >
         {/* Product Image with Link */}
-        <Link to={`/product/${product.id}`} className="absolute inset-0 flex items-center justify-center">
+        <Link
+          to={`/product/${product.id}`}
+          className="absolute inset-0 flex items-center justify-center"
+        >
           <img
-            src={product.image}
+            src={getImageSrc(product.image)}
             alt={product.name}
             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            onError={handleImageError}
           />
         </Link>
 
-        {/* ✅ Fixed: Tag Badge - Proper positioning */}
+        {/* Tag Badge - Proper positioning */}
         {(product.tag || product.isNew) && (
           <div className="absolute top-3 left-3 z-10 flex flex-col gap-1.5">
             {product.tag && (
@@ -105,7 +110,7 @@ const ProductCard = ({ product }) => {
           </div>
         )}
 
-        {/* ✅ Fixed: Wishlist Button */}
+        {/*Wishlist Button */}
         <button
           onClick={handleWishlistToggle}
           className="absolute top-3 right-3 w-8 h-8 rounded-full flex items-center justify-center transition-all duration-200 z-10 bg-white/90 hover:bg-white shadow-sm"
@@ -119,7 +124,7 @@ const ProductCard = ({ product }) => {
           />
         </button>
 
-        {/* ✅ Fixed: Add to Cart Button */}
+        {/* Add to Cart Button */}
         <button
           onClick={handleAddToCart}
           className="absolute bottom-3 left-3 right-3 py-2.5 text-[10px] sm:text-xs font-medium rounded-sm opacity-0 group-hover:opacity-100 transition-all duration-300 translate-y-2 group-hover:translate-y-0 z-10"
@@ -134,7 +139,7 @@ const ProductCard = ({ product }) => {
         </button>
       </div>
 
-      {/* ✅ Fixed: Product Info */}
+      {/*Product Info */}
       <div>
         <Link to={`/product/${product.id}`}>
           <p

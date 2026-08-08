@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { useAuth } from "@/context/AuthContext";
-import { reviewService } from "@/services/reviewService";
-import RatingStars from "./RatingStars";
 import ReviewItem from "./ReviewItem";
 import ReviewForm from "./ReviewForm";
+import RatingStars from "./RatingStars";
 import { MessageSquare } from "lucide-react";
+import { useAuth } from "@/context/AuthContext";
+import { reviewService } from "@/services/reviewService";
 
 const ProductReviews = ({ productId }) => {
   const { user } = useAuth();

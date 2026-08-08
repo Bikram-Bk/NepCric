@@ -1,9 +1,8 @@
 import { Link } from "react-router-dom";
-import { formatters } from "@/utils/formatters";
 import { constants } from "@/utils/constants";
+import { formatters } from "@/utils/formatters";
 
 const CartSummary = ({ subtotal, onCheckout }) => {
-  // ✅ Updated: Use constants from utils
   const shipping = subtotal > constants.FREE_SHIPPING_THRESHOLD ? 0 : constants.SHIPPING_COST;
   const tax = subtotal * constants.TAX_RATE;
 
@@ -21,7 +20,6 @@ const CartSummary = ({ subtotal, onCheckout }) => {
           <span style={{ color: "#7A7468", fontFamily: "Outfit, sans-serif" }}>
             Subtotal
           </span>
-          {/* ✅ Updated: Subtotal in NPR */}
           <span style={{ fontFamily: "Outfit, sans-serif", color: "#1C1A17" }}>
             {formatters.price(subtotal)}
           </span>
@@ -30,7 +28,6 @@ const CartSummary = ({ subtotal, onCheckout }) => {
           <span style={{ color: "#7A7468", fontFamily: "Outfit, sans-serif" }}>
             Shipping
           </span>
-          {/* ✅ Updated: Shipping in NPR */}
           <span style={{ fontFamily: "Outfit, sans-serif", color: "#1C1A17" }}>
             {shipping === 0 ? "Free" : formatters.price(shipping)}
           </span>
@@ -39,7 +36,7 @@ const CartSummary = ({ subtotal, onCheckout }) => {
           <span style={{ color: "#7A7468", fontFamily: "Outfit, sans-serif" }}>
             VAT (13%)
           </span>
-          {/* ✅ Updated: Tax in NPR */}
+
           <span style={{ fontFamily: "Outfit, sans-serif", color: "#1C1A17" }}>
             {formatters.price(tax)}
           </span>
@@ -52,7 +49,7 @@ const CartSummary = ({ subtotal, onCheckout }) => {
             >
               Total
             </span>
-            {/* ✅ Updated: Total in NPR */}
+
             <span
               style={{ fontFamily: "Outfit, sans-serif", color: "#C4954A" }}
             >

@@ -1,8 +1,10 @@
+import { getImage, handleImageError } from "@/utils/images";
+
 const Journal = () => {
   const articles = [
     {
       id: 1,
-      img: "/images/journals/physical_profiling.jpg",
+      img: getImage("donald-steve"),
       alt: "Physical profiling of cricket players",
       tag: "Fitness",
       title: "Physical Profiling of International Cricket Players",
@@ -12,7 +14,7 @@ const Journal = () => {
     },
     {
       id: 2,
-      img: "/images/journals/individual_and_team_performance.jpg",
+      img: getImage("individual-and-team-performance"),
       alt: "Team performance in cricket",
       tag: "Performance",
       title: "Individual and Team Performance in Cricket",
@@ -22,7 +24,7 @@ const Journal = () => {
     },
     {
       id: 3,
-      img: "/images/journals/modelling_career_trajectorie.jpg",
+      img: getImage("modelling-career-trajectorie"),
       alt: "Career trajectories of cricket players",
       tag: "Analytics",
       title: "Modelling Career Trajectories of Cricket Players",
@@ -32,7 +34,7 @@ const Journal = () => {
     },
     {
       id: 4,
-      img: "/images/journals/Donald_Steve.jpg",
+      img: getImage("donald-steve"),
       alt: "Donald Bradman and Steven Smith",
       tag: "Batting",
       title: "Donald Bradman and Steven Smith: What Are Their Secrets?",
@@ -52,7 +54,6 @@ const Journal = () => {
       }}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Header */}
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between mb-10">
           <div>
             <p
@@ -91,8 +92,6 @@ const Journal = () => {
             View More →
           </a>
         </div>
-
-        {/* Articles */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
           {articles.map((article) => (
             <a
@@ -102,7 +101,6 @@ const Journal = () => {
               rel="noopener noreferrer"
               className="group block"
             >
-              {/* ✅ Fixed: Image container with overflow hidden and proper sizing */}
               <div
                 className="relative overflow-hidden rounded-sm mb-4 bg-stone-200"
                 style={{ aspectRatio: "3 / 2" }}
@@ -111,9 +109,10 @@ const Journal = () => {
                   src={article.img}
                   alt={article.alt}
                   className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  onError={handleImageError}
                   style={{
-                    minWidth: '100%',
-                    minHeight: '100%',
+                    minWidth: "100%",
+                    minHeight: "100%",
                   }}
                 />
               </div>

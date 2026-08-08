@@ -1,13 +1,13 @@
 import { useState, useEffect } from "react";
+import { constants } from "@/utils/constants";
 import { useNavigate } from "react-router-dom";
+import { formatters } from "@/utils/formatters";
 import { useCart } from "@/context/CartContext";
 import { useAuth } from "@/context/AuthContext";
 import { orderService } from "@/services/orderService";
 import ShippingForm from "@/components/checkout/ShippingForm";
-import PaymentMethod from "@/components/checkout/PaymentMethod";
 import OrderSummary from "@/components/checkout/OrderSummary";
-import { constants } from "@/utils/constants";
-import { formatters } from "@/utils/formatters";
+import PaymentMethod from "@/components/checkout/PaymentMethod";
 
 const Checkout = () => {
   const { cart, total, clearCart } = useCart();
@@ -19,14 +19,12 @@ const Checkout = () => {
   const [paymentDetails, setPaymentDetails] = useState(null);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
 
-  // Calculate totals
   const subtotal = total;
   const shipping =
     subtotal > constants.FREE_SHIPPING_THRESHOLD ? 0 : constants.SHIPPING_COST;
   const tax = subtotal * constants.TAX_RATE;
   const grandTotal = subtotal + shipping + tax;
 
-  // Use useEffect for redirect when cart is empty
   useEffect(() => {
     if (cart.length === 0) {
       navigate("/cart");
@@ -88,20 +86,7 @@ const Checkout = () => {
   }
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <span className="text-[#C4954A]">Home</span>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span className="text-[#C4954A]">Cart</span>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>Checkout</span>
-      </div>
-
-      {/* Step Indicator */}
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="flex items-center gap-4 mb-8">
         {[1, 2, 3].map((s) => (
           <div key={s} className="flex items-center gap-2">
@@ -127,7 +112,6 @@ const Checkout = () => {
       </div>
 
       <div className="grid lg:grid-cols-3 gap-8">
-        {/* Main Content */}
         <div className="lg:col-span-2">
           <div className="bg-white p-6 rounded-sm border border-[#D0C9BA]">
             <h2
@@ -153,7 +137,6 @@ const Checkout = () => {
 
             {step === 3 && (
               <div className="space-y-6">
-                {/* Shipping Details */}
                 <div>
                   <h3
                     className="text-sm font-semibold mb-2"
@@ -182,7 +165,6 @@ const Checkout = () => {
                   </p>
                 </div>
 
-                {/* Payment Method */}
                 <div>
                   <h3
                     className="text-sm font-semibold mb-2"
@@ -204,7 +186,6 @@ const Checkout = () => {
                   </p>
                 </div>
 
-                {/* Place Order Button */}
                 <button
                   onClick={handlePlaceOrder}
                   disabled={isPlacingOrder}

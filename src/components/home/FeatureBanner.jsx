@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { formatters } from "@/utils/formatters";
+import { getImage, handleImageError } from "@/utils/images";
 
 const spotlightProduct = products.find((p) => p.id === 6);
 
@@ -78,7 +79,8 @@ const FeatureBanner = () => {
                   fontFamily: "Outfit, sans-serif",
                 }}
               >
-                {spotlightProduct.brand} · {spotlightProduct.specifications?.material}
+                {spotlightProduct.brand} ·{" "}
+                {spotlightProduct.specifications?.material}
               </div>
             </div>
           </div>
@@ -97,9 +99,12 @@ const FeatureBanner = () => {
         </div>
         <div className="relative min-h-64 lg:min-h-0 bg-stone-700">
           <img
-            src="/images/bats/gn-pro-bat.jpg"
+            src={getImage(
+              spotlightProduct?.image || "/images/bats/gn-pro-bat.jpg",
+            )}
             alt={spotlightProduct.name}
             className="absolute inset-0 w-full h-full object-cover"
+            onError={handleImageError}
           />
         </div>
       </div>

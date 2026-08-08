@@ -1,8 +1,9 @@
-import { ArrowRight } from "lucide-react";
 import { Link } from "react-router-dom";
+import { ArrowRight } from "lucide-react";
+
+import { handleImageError } from "@/utils/images";
 
 const Hero = () => {
-  // Scroll to Featured section
   const scrollToFeatured = () => {
     const section = document.getElementById("featured");
     if (section) {
@@ -18,12 +19,12 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden">
-      {/* Background image - Full width and height */}
       <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
           src="/images/background_image.jpg"
           alt="Premium cricket equipment showcase"
           className="w-full h-full object-cover"
+          onError={handleImageError}
           style={{
             objectPosition: "30% center",
           }}

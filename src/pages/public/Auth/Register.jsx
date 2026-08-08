@@ -1,8 +1,8 @@
+import { Eye, EyeOff } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "@/context/AuthContext";
 import { validators } from "@/utils/validators";
-import { Eye, EyeOff } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +18,6 @@ const Register = () => {
   const { register, isAuthenticated } = useAuth();
   const navigate = useNavigate();
 
-  // Redirect if already authenticated
   useEffect(() => {
     if (isAuthenticated) {
       navigate("/", { replace: true });
@@ -65,7 +64,7 @@ const Register = () => {
 
     setIsLoading(true);
 
-    const { confirmPassword, ...userData } = formData;
+    const { ...userData } = formData;
     const result = await register(userData);
 
     if (result.success) {

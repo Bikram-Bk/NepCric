@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useParams, Link } from "react-router-dom";
 import {
   Star,
   Heart,
@@ -11,11 +10,17 @@ import {
   RotateCcw,
 } from "lucide-react";
 import { products } from "@/data/products";
-import ProductCard from "@/components/product/ProductCard";
 import { useCart } from "@/context/CartContext";
+import { formatters } from "@/utils/formatters";
+import { useParams, Link } from "react-router-dom";
 import { useWishlist } from "@/context/WishlistContext";
+import ProductCard from "@/components/product/ProductCard";
 import ProductReviews from "@/components/product/ProductReviews";
-import { formatters } from "@/utils/formatters"; // ✅ Added import
+import {
+  getImageSrc,
+  handleImageError,
+  PLACEHOLDER_IMAGE,
+} from "@/utils/images";
 
 // Helper functions
 const getProductById = (id) => {
@@ -40,12 +45,11 @@ const ProductDetails = () => {
   const { isInWishlist, toggleWishlist } = useWishlist();
   const [isWishlisted, setIsWishlisted] = useState(false);
 
-  // Mock product images (use product image or placeholder)
   const productImages = [
-    product?.image || "/images/placeholder.jpg",
-    product?.image || "/images/placeholder.jpg",
-    product?.image || "/images/placeholder.jpg",
-    product?.image || "/images/placeholder.jpg",
+    product?.image || PLACEHOLDER_IMAGE,
+    product?.image || PLACEHOLDER_IMAGE,
+    product?.image || PLACEHOLDER_IMAGE,
+    product?.image || PLACEHOLDER_IMAGE,
   ];
 
   useEffect(() => {
@@ -148,31 +152,7 @@ const ProductDetails = () => {
   }
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <Link
-          to="/"
-          className="hover:opacity-60 transition-opacity"
-          style={{ color: "#C4954A" }}
-        >
-          Home
-        </Link>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <Link
-          to="/shop"
-          className="hover:opacity-60 transition-opacity"
-          style={{ color: "#C4954A" }}
-        >
-          Shop
-        </Link>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>{product.name}</span>
-      </div>
-
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
       {/* Product Main Section */}
       <div className="grid md:grid-cols-2 gap-8 lg:gap-12 mb-12">
         {/* Left - Gallery */}
@@ -182,9 +162,10 @@ const ProductDetails = () => {
             style={{ aspectRatio: "1/1", maxHeight: "480px" }}
           >
             <img
-              src={productImages[selectedImage]}
+              src={getImageSrc(productImages[selectedImage])}
               alt={product.name}
               className="w-full h-full object-contain"
+              onError={handleImageError}
             />
             {product.tag && (
               <div className="absolute top-4 left-4 px-3 py-1 text-xs font-medium rounded-sm z-10">
@@ -233,16 +214,18 @@ const ProductDetails = () => {
               <button
                 key={index}
                 onClick={() => setSelectedImage(index)}
-                className={`flex-shrink-0 overflow-hidden rounded-sm bg-[#F0EBE0] transition-all duration-200 ${selectedImage === index
-                  ? "ring-2 ring-[#C4954A]"
-                  : "hover:opacity-70"
-                  }`}
+                className={`flex-shrink-0 overflow-hidden rounded-sm bg-[#F0EBE0] transition-all duration-200 ${
+                  selectedImage === index
+                    ? "ring-2 ring-[#C4954A]"
+                    : "hover:opacity-70"
+                }`}
                 style={{ aspectRatio: "1/1", width: "80px", height: "80px" }}
               >
                 <img
-                  src={img}
+                  src={getImageSrc(img)}
                   alt={`${product.name} ${index + 1}`}
                   className="w-full h-full object-contain"
+                  onError={handleImageError}
                 />
               </button>
             ))}
@@ -275,7 +258,6 @@ const ProductDetails = () => {
             </span>
           </div>
 
-          {/* ✅ Updated: Price in NPR */}
           <div className="flex items-center gap-3 mb-6">
             <span
               className="text-3xl font-bold"
@@ -368,10 +350,11 @@ const ProductDetails = () => {
             </button>
             <button
               onClick={handleWishlistToggle}
-              className={`px-6 py-3.5 rounded-sm transition-all duration-200 flex items-center justify-center gap-2 border ${isWishlisted
-                ? "bg-[#C4954A] text-white border-[#C4954A]"
-                : "border-[#D0C9BA] hover:bg-[#EDE8DE]"
-                }`}
+              className={`px-6 py-3.5 rounded-sm transition-all duration-200 flex items-center justify-center gap-2 border ${
+                isWishlisted
+                  ? "bg-[#C4954A] text-white border-[#C4954A]"
+                  : "border-[#D0C9BA] hover:bg-[#EDE8DE]"
+              }`}
               style={{ fontFamily: "Outfit, sans-serif" }}
             >
               <Heart
@@ -429,10 +412,11 @@ const ProductDetails = () => {
             <button
               key={tab}
               onClick={() => setActiveTab(tab)}
-              className={`pb-3 text-sm font-medium transition-colors ${activeTab === tab
-                ? "border-b-2 border-[#C4954A]"
-                : "hover:opacity-60"
-                }`}
+              className={`pb-3 text-sm font-medium transition-colors ${
+                activeTab === tab
+                  ? "border-b-2 border-[#C4954A]"
+                  : "hover:opacity-60"
+              }`}
               style={{
                 color: activeTab === tab ? "#C4954A" : "#7A7468",
                 fontFamily: "Outfit, sans-serif",

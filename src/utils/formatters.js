@@ -1,7 +1,6 @@
 export const formatters = {
   // Format price in NPR
   price: (amount) => {
-    // Format with commas for Nepali numbering (e.g., 39,999)
     const formattedAmount = Number(amount).toLocaleString("en-IN");
     return `रू ${formattedAmount}`;
   },
@@ -93,7 +92,6 @@ export const formatters = {
   // Format phone number (Nepali format)
   phone: (number) => {
     if (!number) return "";
-    // Format: +977-XXXXXXXXX or 01-XXXXXXX
     const cleaned = number.replace(/\D/g, "");
     if (cleaned.length === 10) {
       return `${cleaned.slice(0, 3)}-${cleaned.slice(3, 7)}-${cleaned.slice(7)}`;
@@ -104,7 +102,6 @@ export const formatters = {
   // Format address for Nepal
   address: (address) => {
     if (!address) return "";
-    // Just return as is, formatting can be customized
     return address;
   },
 };

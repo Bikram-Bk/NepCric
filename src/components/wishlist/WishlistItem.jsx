@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { ShoppingBag, X } from "lucide-react";
-import { formatters } from "@/utils/formatters"; // ✅ Added import
+import { formatters } from "@/utils/formatters";
+import { getImageSrc, handleImageError } from "@/utils/images";
 
 const WishlistItem = ({ item, onRemove, onMoveToCart }) => {
   return (
@@ -11,9 +12,10 @@ const WishlistItem = ({ item, onRemove, onMoveToCart }) => {
       {/* Image */}
       <div className="w-24 h-24 sm:w-28 sm:h-28 flex-shrink-0 bg-stone-200 rounded-sm overflow-hidden">
         <img
-          src={item.image}
+          src={getImageSrc(item.image)}
           alt={item.name}
           className="w-full h-full object-contain"
+          onError={handleImageError}
         />
       </div>
 
@@ -48,7 +50,6 @@ const WishlistItem = ({ item, onRemove, onMoveToCart }) => {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* ✅ Updated: Price in NPR */}
           <span
             className="text-sm font-semibold"
             style={{ fontFamily: "Outfit, sans-serif", color: "#C4954A" }}

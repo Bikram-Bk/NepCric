@@ -1,16 +1,14 @@
 import { Link } from "react-router-dom";
 import { products } from "@/data/products";
 import { formatters } from "@/utils/formatters";
+import { getImage, handleImageError } from "@/utils/images";
 
-// Pick a naturally horizontal landscape product for the banner image
-// Kookaburra Cricket Bag (id:5) — landscape aspect ratio, fits banner perfectly
 const bannerProduct = products.find((p) => p.id === 5);
 
-// Get the real max discount across all sale products
 const maxDiscount = Math.max(
   ...products
     .filter((p) => p.originalPrice)
-    .map((p) => Math.round((1 - p.price / p.originalPrice) * 100))
+    .map((p) => Math.round((1 - p.price / p.originalPrice) * 100)),
 );
 
 const PromotionalBanner = () => {
@@ -20,7 +18,6 @@ const PromotionalBanner = () => {
         className="grid md:grid-cols-2 rounded-sm overflow-hidden min-h-[320px] md:min-h-[360px]"
         style={{ backgroundColor: "#2c2a26" }}
       >
-        {/* Left Content */}
         <div className="flex flex-col justify-center px-8 sm:px-12 py-10 sm:py-14">
           <p
             className="text-xs font-medium tracking-widest uppercase mb-3"
@@ -111,8 +108,6 @@ const PromotionalBanner = () => {
             </div>
           </div>
         </div>
-
-        {/* Right Content - Real Product Image */}
         <div
           className="relative min-h-[240px] md:min-h-full overflow-hidden"
           style={{ backgroundColor: "#23211E" }}
@@ -120,11 +115,11 @@ const PromotionalBanner = () => {
           {bannerProduct && (
             <>
               <img
-                src={bannerProduct.image}
+                src={getImage(bannerProduct.image)}
                 alt={bannerProduct.name}
                 className="absolute inset-0 w-full h-full object-cover object-center transition-transform duration-500 hover:scale-105"
+                onError={handleImageError}
               />
-              {/* Overlay gradient for readability of price tag */}
               <div
                 className="absolute inset-0 z-10 pointer-events-none"
                 style={{
@@ -132,7 +127,6 @@ const PromotionalBanner = () => {
                     "linear-gradient(to top, rgba(28,26,23,0.85) 0%, rgba(28,26,23,0.2) 60%, transparent 100%)",
                 }}
               />
-              {/* Price tag floating label */}
               <div className="absolute bottom-5 right-6 z-20 text-right">
                 <p
                   className="text-xs mb-0.5"

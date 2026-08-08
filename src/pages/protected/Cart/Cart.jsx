@@ -1,9 +1,9 @@
+import { ShoppingBag } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useNavigate } from "react-router-dom";
 import CartItem from "@/components/cart/CartItem";
-import CartSummary from "@/components/cart/CartSummary";
 import EmptyCart from "@/components/cart/EmptyCart";
-import { ShoppingBag } from "lucide-react";
+import CartSummary from "@/components/cart/CartSummary";
 
 const Cart = () => {
   const { cart, total, itemCount, updateQuantity, removeFromCart, clearCart } =
@@ -16,32 +16,14 @@ const Cart = () => {
 
   if (cart.length === 0) {
     return (
-      <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-        <div
-          className="flex items-center gap-2 text-sm mb-6"
-          style={{ fontFamily: "Outfit, sans-serif" }}
-        >
-          <span className="text-[#C4954A]">Home</span>
-          <span style={{ color: "#7A7468" }}>/</span>
-          <span style={{ color: "#1C1A17" }}>Cart</span>
-        </div>
+      <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
         <EmptyCart />
       </div>
     );
   }
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <span className="text-[#C4954A]">Home</span>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>Cart</span>
-      </div>
-
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-10">
       {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <div className="flex items-center gap-3">

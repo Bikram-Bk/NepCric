@@ -1,11 +1,6 @@
 import { MapPin, Edit, Trash2, StarOff } from "lucide-react";
 
-const AddressList = ({
-  addresses,
-  onEdit,
-  onDelete,
-  onSetDefault,
-}) => {
+const AddressList = ({ addresses, onEdit, onDelete, onSetDefault }) => {
   if (addresses.length === 0) {
     return (
       <div className="text-center py-8">

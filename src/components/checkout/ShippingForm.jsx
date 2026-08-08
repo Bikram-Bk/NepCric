@@ -10,7 +10,7 @@ const ShippingForm = ({ onSubmit, initialData }) => {
     city: initialData?.city || "",
     state: initialData?.state || "",
     zipCode: initialData?.zipCode || "",
-    country: initialData?.country || "NP", // ✅ Changed default to Nepal
+    country: initialData?.country || "NP",
   });
 
   const [errors, setErrors] = useState({});

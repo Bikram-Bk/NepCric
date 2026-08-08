@@ -1,32 +1,32 @@
-import { createBrowserRouter } from "react-router-dom";
-import MainLayout from "@/layouts/MainLayout";
-import AuthLayout from "@/layouts/AuthLayout";
-import Home from "@/pages/public/Home/Home";
-import About from "@/pages/public/About/About";
-import Shop from "@/pages/public/Shop/Shop";
-import ProductDetails from "@/pages/public/Product/ProductDetails";
-import Login from "@/pages/public/Auth/Login";
-import Register from "@/pages/public/Auth/Register";
-import ForgotPassword from "@/pages/public/Auth/ForgotPassword";
-import ResetSuccess from "@/pages/public/Auth/ResetSuccess";
-import ProtectedRoute from "@/components/common/ProtectedRoute";
-import NotFound from "@/pages/public/NotFound/NotFound";
-import Contact from "@/pages/public/Contact/Contact";
+// Public pages
 import FAQ from "@/pages/public/FAQ/FAQ";
+import Home from "@/pages/public/Home/Home";
+import Shop from "@/pages/public/Shop/Shop";
 import Help from "@/pages/public/Help/Help";
-import Privacy from "@/pages/public/Privacy/Privacy";
-import Shipping from "@/pages/public/Shipping/Shipping";
+import AuthLayout from "@/layouts/AuthLayout";
+import MainLayout from "@/layouts/MainLayout";
+import Login from "@/pages/public/Auth/Login";
 import Terms from "@/pages/public/Terms/Terms";
+import About from "@/pages/public/About/About";
+import Register from "@/pages/public/Auth/Register";
+import Contact from "@/pages/public/Contact/Contact";
+import Privacy from "@/pages/public/Privacy/Privacy";
+import { createBrowserRouter } from "react-router-dom";
+import Shipping from "@/pages/public/Shipping/Shipping";
+import NotFound from "@/pages/public/NotFound/NotFound";
+import ResetSuccess from "@/pages/public/Auth/ResetSuccess";
+import ForgotPassword from "@/pages/public/Auth/ForgotPassword";
+import ProtectedRoute from "@/components/common/ProtectedRoute";
+import ProductDetails from "@/pages/public/Product/ProductDetails";
 
 // Protected pages
 import Cart from "@/pages/protected/Cart/Cart";
-import Wishlist from "@/pages/protected/Wishlist/Wishlist";
-import Profile from "@/pages/protected/Profile/Profile";
-import Checkout from "@/pages/protected/Checkout/Checkout";
-import OrderSuccess from "@/pages/protected/Checkout/OrderSuccess";
 import Orders from "@/pages/protected/Orders/Orders";
+import Profile from "@/pages/protected/Profile/Profile";
+import Wishlist from "@/pages/protected/Wishlist/Wishlist";
+import Checkout from "@/pages/protected/Checkout/Checkout";
 import OrderDetails from "@/pages/protected/Orders/OrderDetails";
-
+import OrderSuccess from "@/pages/protected/Checkout/OrderSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -139,7 +139,6 @@ export const router = createBrowserRouter([
           </ProtectedRoute>
         ),
       },
-      // 404
       {
         path: "*",
         element: <NotFound />,

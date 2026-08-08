@@ -1,27 +1,26 @@
-import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 import { useAuth } from "@/context/AuthContext";
-import { orderService } from "@/services/orderService";
-import OrderCard from "@/components/orders/OrderCard";
 import { Package, ShoppingBag } from "lucide-react";
+import OrderCard from "@/components/orders/OrderCard";
+import { orderService } from "@/services/orderService";
 
 const Orders = () => {
   const { user } = useAuth();
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  useEffect(() => {
-    const loadOrders = () => {
-      setIsLoading(true);
-      const allOrders = orderService.getOrders();
-      // Filter orders for current user
-      const userOrders = allOrders.filter(
-        (order) => order.userId === user?.id || order.userId === "guest",
-      );
-      setOrders(userOrders);
-      setIsLoading(false);
-    };
+  const loadOrders = () => {
+    setIsLoading(true);
+    const allOrders = orderService.getOrders();
+    const userOrders = allOrders.filter(
+      (order) => order.userId === user?.id || order.userId === "guest",
+    );
+    setOrders(userOrders);
+    setIsLoading(false);
+  };
 
+  useEffect(() => {
     loadOrders();
   }, [user]);
 
@@ -34,24 +33,7 @@ const Orders = () => {
   }
 
   return (
-    <div className="py-8 sm:py-12 lg:py-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
-      {/* Breadcrumb */}
-      <div
-        className="flex items-center gap-2 text-sm mb-6"
-        style={{ fontFamily: "Outfit, sans-serif" }}
-      >
-        <Link
-          to="/"
-          className="hover:opacity-60 transition-opacity"
-          style={{ color: "#C4954A" }}
-        >
-          Home
-        </Link>
-        <span style={{ color: "#7A7468" }}>/</span>
-        <span style={{ color: "#1C1A17" }}>My Orders</span>
-      </div>
-
-      {/* Header */}
+    <div className="pt-20 pb-8 sm:pt-24 sm:pb-12 lg:pt-28 lg:pb-16 max-w-4xl mx-auto px-4 sm:px-6 lg:px-10">
       <div className="flex items-center gap-3 mb-8">
         <Package size={28} style={{ color: "#C4954A" }} />
         <h1
@@ -68,7 +50,6 @@ const Orders = () => {
         </span>
       </div>
 
-      {/* Orders List */}
       {orders.length === 0 ? (
         <div className="text-center py-16">
           <div className="w-24 h-24 rounded-full bg-[#EDE8DE] flex items-center justify-center mx-auto mb-4">
@@ -102,7 +83,11 @@ const Orders = () => {
       ) : (
         <div className="space-y-4">
           {orders.map((order) => (
-            <OrderCard key={order.id} order={order} />
+            <OrderCard
+              key={order.id}
+              order={order}
+              onOrderUpdate={loadOrders}
+            />
           ))}
         </div>
       )}

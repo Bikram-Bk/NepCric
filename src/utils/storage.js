@@ -1,5 +1,3 @@
-// Local storage utilities for auth
-
 export const storage = {
   // Get item from localStorage
   get: (key) => {
@@ -75,7 +73,6 @@ export const storage = {
     return storage.remove("token");
   },
 
-  // ✅ Clear all auth data (added for debugging)
   clearAuth: () => {
     storage.remove("user");
     storage.remove("token");
